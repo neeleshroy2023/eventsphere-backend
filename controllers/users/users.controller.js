@@ -4,12 +4,12 @@ const jwt = require("jsonwebtoken");
 
 const createUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, userType } = req.body;
 
-    if (!email || !password) {
+    if (!email || !password || !userType) {
       return res
         .status(400)
-        .json({ error: "Email and password are required." });
+        .json({ error: "Email, password and userType are required." });
     }
 
     const existingUser = await User.findOne({ email });
@@ -51,7 +51,10 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ error: "Invalid email or password." });
     }
 
-    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+    const token = jwt.sign(
+      { email: user.email, userType: user.userType },
+      process.env.JWT_SECRET
+    );
     return res.status(200).json({ token });
   } catch (error) {
     console.error("Error logging in user:", error);
