@@ -61,9 +61,10 @@ Registers a new user.
 
 ```json
 {
-  "username": "string",
-  "email": "string",
-  "password": "string"
+  "name": "Neelesh Roy",
+  "email": "neelesh.roy@example.com",
+  "password": "Krypt()n821699",
+  "userType": "organizer"
 }
 ```
 
@@ -114,10 +115,12 @@ Fetches a list of all available events.
 ```json
 [
   {
-    "eventId": "string",
-    "eventName": "string",
+    "id": "ObjectId",
+    "title": "string",
+    "description": "string",
     "date": "string",
-    "location": "string"
+    "location": "string",
+    "createdBy": "UserId"
   }
 ]
 ```
@@ -132,9 +135,11 @@ Creates a new event.
 
 ```json
 {
-  "eventName": "string",
+  "title": "string",
+  "description": "string",
   "date": "string",
-  "location": "string"
+  "location": "string",
+  "createdBy": "UserId"
 }
 ```
 
@@ -143,7 +148,7 @@ Creates a new event.
 ```json
 {
   "message": "Event created successfully",
-  "eventId": "string"
+  "id": "string"
 }
 ```
 
@@ -153,14 +158,18 @@ Creates a new event.
 `PUT /users/events`  
 **Description:**  
 Updates an existing event.  
+**Request Params:**
+id: EventId<ObjectId>
 **Request Body:**
 
 ```json
 {
-  "eventId": "string",
-  "eventName": "string",
+  "title": "string",
+  "description": "string",
   "date": "string",
-  "location": "string"
+  "location": "string",
+  "createdBy": "UserId",
+  ""
 }
 ```
 

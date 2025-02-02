@@ -2,6 +2,8 @@ const Event = require("../../database/models/event");
 const { getMissingRequiredFields } = require("../../utils/events");
 
 const { EVENT } = require("../../constants/events");
+const sendMail = require("../../services/email");
+const sendConfirmationMail = require("../../services/email");
 
 const createEvent = async (req, res) => {
   try {
@@ -104,6 +106,8 @@ const registerAttendee = async (req, res) => {
 
     event.attendees.push(attendeeId);
     await event.save();
+
+    sendConfirmationMail();
     res.send(event);
   } catch (error) {
     res.status(400).send(error);

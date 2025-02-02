@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+const nodemailer = require("nodemailer");
 
 const getEmailAccount = async () => {
   return new Promise((resolve, reject) => {
@@ -15,4 +15,4 @@ const getEmailAccount = async () => {
   });
 };
 
-export default getEmailAccount;
+module.exports = getEmailAccount;

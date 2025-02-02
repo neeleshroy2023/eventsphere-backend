@@ -1,8 +1,8 @@
-import nodemailer from "nodemailer";
+const nodemailer = require("nodemailer");
 
 require("dotenv").config();
 
-const sendMail = async ({ to, subject, text, html, account }) => {
+const transport = async ({ to, subject, text, html, account }) => {
   return new Promise((resolve, reject) => {
     let message = {
       to,
@@ -43,4 +43,4 @@ const sendMail = async ({ to, subject, text, html, account }) => {
   });
 };
 
-export default sendMail;
+module.exports = transport;
